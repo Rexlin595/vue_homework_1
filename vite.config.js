@@ -1,17 +1,16 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-
-// --- 這裡有變動 ---
-// 引入 Node.js 的 url 模組，用來處理檔案路徑
 import { fileURLToPath, URL } from 'node:url'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // --- 這是部署到 GitHub Pages 的關鍵設定 ---
+  // 告訴 Vite 所有資源的路徑都要加上這個前綴
+  base: '/vue_homework_1/', // <-- 請確認這就是您的 repo 名稱
+
   plugins: [vue()],
   resolve: {
     alias: {
-      // --- 這裡有變動 ---
-      // 使用 import.meta.url 來取得目前檔案的路徑，並解析出 src 資料夾的絕對路徑
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
